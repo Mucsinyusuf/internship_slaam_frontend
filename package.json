@@ -1,38 +1,24 @@
 {
-<<<<<<< HEAD
-  "name": "slaam-microfinance",
-  "version": "0.1.0",
-  "private": true,
-  "proxy": "http://127.0.0.1:5000",
-=======
   "name": "salaam_frontend",
   "version": "0.1.0",
   "private": true,
->>>>>>> 0f86c38 (tested frontend)
+  "proxy": "http://127.0.0.1:5000",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
-<<<<<<< HEAD
-    "formik": "^2.4.6",
-    "notistack": "^3.0.2",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
-    "yup": "^1.6.1"
-=======
     "axios": "^1.9.0",
+    "formik": "^2.4.6",
     "lucide-react": "^0.511.0",
+    "notistack": "^3.0.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.6.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
->>>>>>> 0f86c38 (tested frontend)
+    "web-vitals": "^2.1.4",
+    "yup": "^1.6.1"
   },
   "scripts": {
     "start": "react-scripts start",
