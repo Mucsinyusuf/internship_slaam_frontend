@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import './AdminLogin.css';  // Import the CSS file
+<<<<<<< HEAD
+=======
+import { useNavigate } from "react-router-dom";
+>>>>>>> 0f86c38 (tested frontend)
 
 function AdminLogin({ setUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+<<<<<<< HEAD
+=======
+   const navigate = useNavigate();
+>>>>>>> 0f86c38 (tested frontend)
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -23,9 +31,15 @@ function AdminLogin({ setUser }) {
       .then((data) => {
         setUser(data);
         alert("Login successful!");
+<<<<<<< HEAD
         setUsername('');// refrhes the username
         setPassword(''); // refrshes the password
 
+=======
+        setUsername('')
+        setPassword('')
+        navigate('/customers');
+>>>>>>> 0f86c38 (tested frontend)
       })
       .catch((err) => {
         console.error("Login failed:", err);
@@ -67,4 +81,8 @@ function AdminLogin({ setUser }) {
   );
 }
 
+<<<<<<< HEAD
 export default AdminLogin;
+=======
+export default AdminLogin;
+>>>>>>> 0f86c38 (tested frontend)
