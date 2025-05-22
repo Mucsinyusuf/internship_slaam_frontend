@@ -1,20 +1,14 @@
 import React, { useState } from "react";
-import './AdminLogin.css';  // Import the CSS file
-<<<<<<< HEAD
-=======
+import './AdminLogin.css';  
 import { useNavigate } from "react-router-dom";
->>>>>>> 0f86c38 (tested frontend)
 
 function AdminLogin({ setUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-<<<<<<< HEAD
-=======
-   const navigate = useNavigate();
->>>>>>> 0f86c38 (tested frontend)
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const handleLogin = (e/*event*/) => {
+    e.preventDefault();//handles form submission avoids the browser to refresh the page on form submit
 
     fetch("http://127.0.0.1:5000/admin/login", {
       method: "POST",
@@ -31,15 +25,12 @@ function AdminLogin({ setUser }) {
       .then((data) => {
         setUser(data);
         alert("Login successful!");
-<<<<<<< HEAD
         setUsername('');// refrhes the username
         setPassword(''); // refrshes the password
 
-=======
         setUsername('')
         setPassword('')
         navigate('/customers');
->>>>>>> 0f86c38 (tested frontend)
       })
       .catch((err) => {
         console.error("Login failed:", err);
@@ -81,8 +72,5 @@ function AdminLogin({ setUser }) {
   );
 }
 
-<<<<<<< HEAD
 export default AdminLogin;
-=======
-export default AdminLogin;
->>>>>>> 0f86c38 (tested frontend)
+//adminn

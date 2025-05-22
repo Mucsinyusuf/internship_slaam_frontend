@@ -5,15 +5,27 @@ import axios from "axios";
 const Header = () => {
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    try {
-      await axios.post("http://localhost:5000/admin/logout", {}, { withCredentials: true });
+const handleLogout = () => {
+  fetch("http://localhost:5000/admin/logout", {
+    method: "POST",
+    credentials: "include", 
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({}), 
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Logout failed");
+      }
       alert("Logged out successfully");
       navigate("/");
-    } catch (err) {
+    })
+    .catch(() => {
       alert("Logout failed");
-    }
-  };
+    });
+};
+
 
   const buttonStyle = {
     backgroundColor: 'white',
@@ -98,3 +110,4 @@ const Header = () => {
 };
 
 export default Header;
+//dfghjs

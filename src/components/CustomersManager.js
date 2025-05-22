@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Pencil, Trash2 } from 'lucide-react';
 import Header from './Header';
 
@@ -10,16 +9,19 @@ const CustomersManager = () => {
     fetchCustomers();
   }, []);
 
-  const fetchCustomers = async () => {
-    try {
-      const res = await axios.get('http://localhost:5000/customers', { withCredentials: true });
-      setCustomers(res.data);
-    } catch (err) {
-      alert('Failed to fetch customers');
-    }
+  const fetchCustomers = () => {
+    fetch('http://localhost:5000/customers', {
+      credentials: 'include',
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to fetch customers');
+        return res.json();
+      })
+      .then((data) => setCustomers(data))
+      .catch(() => alert('Failed to fetch customers'));
   };
 
-  const handleUpdate = async (id, currentData) => {
+  const handleUpdate = (id, currentData) => {
     const name = prompt('Name:', currentData.name);
     const email = prompt('Email:', currentData.email);
     const phone = prompt('Phone (10 digits):', currentData.phone);
@@ -27,22 +29,31 @@ const CustomersManager = () => {
     const balance = parseFloat(prompt('Balance:', currentData.balance));
 
     const updated = { name, email, phone, account_status, balance };
-    try {
-      await axios.patch(`http://localhost:5000/customers/${id}`, updated, { withCredentials: true });
-      fetchCustomers();
-    } catch (err) {
-      alert('Update failed');
-    }
+
+    fetch(`http://localhost:5000/customers/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(updated),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('Update failed');
+        fetchCustomers();
+      })
+      .catch(() => alert('Update failed'));
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this customer?")) {
-      try {
-        await axios.delete(`http://localhost:5000/customers/${id}`, { withCredentials: true });
-        fetchCustomers();
-      } catch (err) {
-        alert('Delete failed');
-      }
+      fetch(`http://localhost:5000/customers/${id}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error('Delete failed');
+          fetchCustomers();
+        })
+        .catch(() => alert('Delete failed'));
     }
   };
 
@@ -122,7 +133,6 @@ const CustomersManager = () => {
   );
 };
 
-// Common styles
 const thStyle = {
   padding: '12px 16px',
   textAlign: 'left',
@@ -145,3 +155,4 @@ const iconBtn = {
 };
 
 export default CustomersManager;
+//admin 

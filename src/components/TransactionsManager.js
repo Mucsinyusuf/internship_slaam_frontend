@@ -6,17 +6,22 @@ const TransactionsManager = () => {
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
-    fetchTransactions();
+    fetch("http://localhost:5000/transactions", {
+      credentials: "include",
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch transactions");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setTransactions(data);
+      })
+      .catch(() => {
+        alert("Failed to fetch transactions");
+      });
   }, []);
-
-  const fetchTransactions = async () => {
-    try {
-      const res = await axios.get('http://localhost:5000/transactions', { withCredentials: true });
-      setTransactions(res.data);
-    } catch (err) {
-      alert('Failed to fetch transactions');
-    }
-  };
 
   return (
     <div style={{ fontFamily: 'Poppins, sans-serif', backgroundColor: '#f4f6f9', minHeight: '100vh', paddingBottom: '40px' }}>
@@ -115,3 +120,5 @@ const tdStyle = {
 };
 
 export default TransactionsManager;
+
+//admin
